@@ -6,8 +6,7 @@ path = require('path')
 class SnocketsBrunchPlugin
   brunchPlugin: yes
   type: 'javascript'
-  pattern: /.*(\.js|\.coffee)/
-
+  extension: 'coffee'
   
   constructor: (@config) ->
     @snockets = new Snockets()
@@ -16,7 +15,7 @@ class SnocketsBrunchPlugin
     console.log 'Compiling through snockets...'
     try
       js = @snockets.getConcatenation path, async: false
-      wrapped = "module.exports = (function(window) { #{js} })(this);"
+      wrapped = "module.exports = (function(window) { ;#{js}; })(this);"
       callback null, wrapped
     catch err
-      callback err
+      callback err, undefined
