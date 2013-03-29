@@ -7,6 +7,7 @@ class SnocketsBrunchPlugin
   brunchPlugin: yes
   type: 'javascript'
   pattern: /.*(\.js|\.coffee)/
+
   
   constructor: (@config) ->
     @snockets = new Snockets()
@@ -14,8 +15,8 @@ class SnocketsBrunchPlugin
   compile: (data, path, callback) ->
     console.log 'Compiling through snockets...'
     try
-      js = snockets.getConcatenation path, async: false
+      js = @snockets.getConcatenation path, async: false
       wrapped = "module.exports = (function(window) { #{js} })(this);"
       callback null, wrapped
-    catch e
+    catch err
       callback err
