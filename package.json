@@ -1,0 +1,9 @@
+{
+  "name": "brunch-snockets",
+  "version": "0.1.0",
+  "description": "Adds support for Sprockets-style requires in CoffeeScript to brunch.",
+  "dependencies": {
+    "coffee-script": "1.x",
+    "snockets": "*"
+  }
+}
