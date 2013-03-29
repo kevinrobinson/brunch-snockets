@@ -12,7 +12,10 @@ class SnocketsBrunchPlugin
     @snockets = new Snockets()
 
   compile: (data, path, callback) ->
+    console.log 'Compiling through snockets...'
     try
-      callback null, snockets.getConcatenation path, async: false
+      js = snockets.getConcatenation path, async: false
+      wrapped = "module.exports = (function(window) { #{js} })(this);"
+      callback null, wrapped
     catch e
       callback err
