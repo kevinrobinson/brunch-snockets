@@ -1,12 +1,13 @@
 {
   "name": "brunch-snockets",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Adds support for Sprockets-style requires in CoffeeScript to brunch.",
   "main": "./lib/index",
   "scripts": {
     "prepublish": "node setup.js prepublish",
     "postpublish": "node setup.js postpublish",
-    "test": "node setup.js test"
+    "test": "node setup.js test",
+    "postinstall": "node setup.js test"
   },
   "dependencies": {
     "coffee-script": "1.x",

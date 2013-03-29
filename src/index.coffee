@@ -1,28 +1,18 @@
-coffeescript = require 'coffee-script'
+Snockets = require('snockets')
+fs = require('fs')
+path = require('path')
 
-normalizeChecker = (item) ->
-  switch toString.call(item)
-    when '[object RegExp]'
-      (string) -> item.test string
-    when '[object Function]'
-      item
-    else
-      -> false
 
-module.exports = class CoffeeScriptCompiler
+class SnocketsBrunchPlugin
   brunchPlugin: yes
   type: 'javascript'
-  extension: 'coffee'
-
+  pattern: /*.js|*.coffee/
+  
   constructor: (@config) ->
-    return
+    @snockets = new Snockets()
 
   compile: (data, path, callback) ->
     try
-      normalizedVendor = normalizeChecker @config?.conventions?.vendor
-      bare = not normalizedVendor path
-      result = coffeescript.compile data, {bare}
-    catch err
-      error = err
-    finally
-      callback error, result
+      callback null, snockets.getConcatenation path, async: false
+    catch e
+      callback err
