@@ -6,7 +6,7 @@ path = require('path')
 class SnocketsBrunchPlugin
   brunchPlugin: yes
   type: 'javascript'
-  pattern: /*.js|*.coffee/
+  pattern: /.*(\.js|\.coffee)/
   
   constructor: (@config) ->
     @snockets = new Snockets()
